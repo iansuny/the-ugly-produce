@@ -25,28 +25,18 @@
           <!-- Inner -->
             <div class="inner">
               <header>
-                <h1><a href="index.html" id="logo">醜蔬果大翻身</a></h1>
+                <h1><a href="/" id="logo">醜蔬果大翻身</a></h1>
                 <hr/>
                 <p>透過購買好品質的醜蔬果來減少浪費，這片土地就翻身成功！</p>
               </header>
               <footer>
-                <a href="" class="button circled scrolly">立即購買</a>
+                <a target="_blank" href="https://docs.google.com/forms/d/1RwmlCV3eNaFXOSwX17juq9OeABGdGBqoLhGEhyYtylQ/viewform" class="button circled scrolly">立即購買</a>
                 </br></br></br></br></br></br>
                 <a href="#what" class="scrolly">了解更多</a>
               </footer>
             </div>
 
-          <!-- Nav -->
-            <nav id="nav">
-              <ul>
-                <li><a class="scrolly" href="/">首頁</a></li>
-                <li><a class="scrolly" href="#what">醜蔬果是什麼？</a></li>
-                <li><a class="scrolly" href="#farmer">農友介紹</a></li>
-                <li><a class="scrolly" href="#product">產品介紹</a></li>
-                <li><a class="scrolly" href="#cta">聯絡我們</a></li>
-                <li><a target="_blank" href="https://www.facebook.com/TheUglyProduce/" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-              </ul>
-            </nav>
+          <%- partial('components/nav') %>
 
         </div>
 
@@ -92,7 +82,7 @@
               </article>
             </div>
             <footer>
-              <a href="/farmer" class="button">看更多裸照</a>
+              <a href="" class="button">看更多農友</a>
             </footer>
           </section>
 
@@ -109,36 +99,39 @@
               <article class="3u 12u(mobile) special">
                 <a href="#" class="image featured"><img src="/images/product/1.jpg" alt="" /></a>
                 <header>
-                  <h3><a href="#">蔡警煌 先生</a></h3>
+                  <h3><a href="#">檸檬</a></h3>
                   </br>
-                  <h4><a href="#">雲林水林薯長有機農場</a></h4>
+                  <h4><a href="#">高雄六龜</a></h4>
                 </header>
               </article>
               <article class="3u 12u(mobile) special">
                 <a href="#" class="image featured"><img src="/images/product/2.jpg" alt="" /></a>
                 <header>
-                  <h3><a href="#">洪箱 阿姨</a></h3>
+                  <h3><a href="#">芭樂</a></h3>
                   </br>
-                  <h4><a href="#">苗栗灣寶</a></h4>
+                  <h4><a href="#">高雄六龜</a></h4>
                 </header>
               </article>
               <article class="3u 12u(mobile) special">
                 <a href="#" class="image featured"><img src="/images/product/3.jpg" alt="" /></a>
                <header>
-                  <h3><a href="#">張家芸 小姐</a></h3>
+                  <h3><a href="#">白蘿蔔</a></h3>
                   </br>
-                  <h4><a href="#">高雄六龜享家蔬果園</a></h4>
+                  <h4><a href="#">高雄六龜</a></h4>
                 </header>
               </article>
               <article class="3u 12u(mobile) special">
                 <a href="#" class="image featured"><img src="/images/product/4.jpg" alt="" /></a>
                <header>
-                  <h3><a href="#">張家芸 小姐</a></h3>
+                  <h3><a href="#">台農 57 地瓜</a></h3>
                   </br>
-                  <h4><a href="#">高雄六龜享家蔬果園</a></h4>
+                  <h4><a href="#">雲林水林</a></h4>
                 </header>
               </article>
             </div>
+            <footer>
+              <a target="_blank" href="https://docs.google.com/forms/d/1RwmlCV3eNaFXOSwX17juq9OeABGdGBqoLhGEhyYtylQ/viewform" class="button">立即購買</a>
+            </footer>
           </section>
 
         </div>
@@ -168,40 +161,12 @@
             <footer>
               <h3>{{ error_message }}</h3>
               </br>
-              <a href="#" class="button">送出我的裸照</a>
+              <a href="#" class="button">送出</a>
             </footer>
           </section>
         </div>
 
-      <!-- Footer -->
-        <div id="footer">
-          <div class="container">
-            <div class="row">
-              <div class="12u">
-                <!-- Contact -->
-                  <section class="contact">
-                    <header>
-                      <h3>醜蔬果大翻身</h3>
-                    </header>
-                    <p>透過購買好品質的醜蔬果來減少浪費，這片土地就翻身成功！</p>
-                    <ul class="icons">
-                      <li><a target="_blank" href="https://www.facebook.com/TheUglyProduce/" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-                      <li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
-                    </ul>
-                  </section>
-
-                <!-- Copyright -->
-                  <div class="copyright">
-                    <ul class="menu">
-                      <li>&copy; 2015 Uglyfruit.</li><li>Design: 孫合毅、<a href="http://html5up.net">HTML5 UP</a></li>
-                    </ul>
-                  </div>
-
-              </div>
-
-            </div>
-          </div>
-        </div>
+        <%- partial('components/footer') %>
 
     </div>
 
