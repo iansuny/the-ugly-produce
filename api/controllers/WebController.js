@@ -21,6 +21,10 @@ module.exports = {
 				return res.view('blank', {
 					layout: 'index',
 				})
+			case 'farmer':
+				return res.view('blank', {
+					layout: 'farmer',
+				})
 		}
 	},
 	
