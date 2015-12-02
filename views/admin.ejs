@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<!--
+	Helios by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>醜蔬果戰略中心</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+
+		<%- partial('components/script') %>
+
+		<script>
+			var u = angular.module('uglyfruit', []);
+		</script>
+
+	</head>
+	<body ng-app="uglyfruit" ng-cloak>
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Inner -->
+						<div class="inner">
+							<header>
+								<h1><a id="logo">醜蔬果戰略中心</a></h1>
+							</header>
+						</div>
+				</div>
+
+			<!-- Main -->
+				<div class="wrapper style1"  ng-controller="messageCtrl">
+
+					<div class="container">
+						<article id="main" class="special">
+							<header>
+								<h2><a href="#">收到的訊息</a></h2>
+							</header>
+							<div class="table">
+								<table>
+									<thead>
+										<tr>
+											<th>姓名</th>
+											<th>Email</th>
+											<th>內容</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="message in messageList">
+											<td ng-bind="message.name"></td>
+											<td><a ng-href="mailto:{{user.email}}"><span ng-bind="message.email"></span></a></td>
+											<td ng-bind="message.text"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</article>
+					</div>
+
+				</div>
+
+				<script>
+					u.controller('messageCtrl', function($scope, $rootScope, $http) {
+						$http.get('/message/get_message')
+						.success(function(response, status) {
+							console.log(response);
+							$scope.messageList = response.result;
+						})
+						.error(function(response, status) {
+						})
+					})
+				</script>
+
+			    <%- partial('components/footer') %>
+			
+		</div>
+
+	</body>
+</html>

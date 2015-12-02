@@ -55,7 +55,7 @@ module.exports = {
 	adminLogin: function(req, res) {
 		var account = req.param('account');
 		var password = req.param('password');
-		if(account == 'verty' && password == 'verty2015') {
+		if(password == 'werthebest') {
 			req.session.isAdmin = true;
 			return res.json({ result: 'ok' });
 		}else{

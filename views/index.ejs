@@ -15,8 +15,12 @@
 
     <%- partial('components/script') %>
 
+    <script>
+      var u = angular.module('uglyfruit', []);
+    </script>
+
   </head>
-  <body class="homepage">
+  <body class="homepage"   ng-app="uglyfruit" ng-cloak>
     <div id="page-wrapper">
 
       <!-- Header -->
@@ -44,7 +48,6 @@
         <div class="wrapper style2" id="what">
           <a class="image fit"><img src="/images/slide/slide1.jpg"/></a>
           <a class="image fit"><img src="/images/slide/slide2.jpg"/></a>
-          <a class="image fit"><img src="/images/slide/slide3.jpg"/></a>
           <a class="image fit"><img src="/images/slide/slide4.jpg"/></a>
         </div>
 
@@ -138,12 +141,12 @@
 
       <!-- CTA -->
         <div class="wrapper style1" id="cta">
-          <section id="features" class="container special">
+          <section id="features" class="container special" ng-controller="messageCtrl" ng-cloak>
             <header>
               <h2>聯絡我們</h2>
             </header>
-            <section id="content">
-              <form ng-submit="send_register()">
+            <section id="content" ng-submit="send_message()">
+              <form>
                 <div class="row uniform">
                   <div class="6u 12u$(3)">
                     <input type="text" placeholder="名字" ng-model="name"/>
@@ -161,10 +164,46 @@
             <footer>
               <h3>{{ error_message }}</h3>
               </br>
-              <a href="#" class="button">送出</a>
+              <a ng-click="send_message()" style="cursor:pointer;" class="button">送出</a>
             </footer>
           </section>
         </div>
+
+        <script>
+          u.controller('messageCtrl', function($scope, $rootScope, $http) {
+            $scope.name = '';
+            $scope.email = '';
+            $scope.text = '';
+            $scope.send_message = function() {
+              $scope.error_message = '';
+              if($scope.name == ''){
+                $scope.error_message = '請輸入您的名字';
+                return;
+              }
+              if($scope.email == ''){
+                $scope.error_message = '請輸入您的Email';
+                return;
+              }
+              if($scope.text == ''){
+                $scope.error_message = '請輸入您的回饋';
+                return;
+              }
+              $http.post('/message/create_message', {
+                name: $scope.name,
+                email: $scope.email,
+                text: $scope.text,
+              })
+              .success(function(response, status) {
+                console.log(response);
+                window.alert('謝謝您！會在跟您聯繫');
+              })
+              .error(function(response, status) {
+                console.log(response);
+              })
+              return;
+            }
+          });
+          </script>
 
         <%- partial('components/footer') %>
 

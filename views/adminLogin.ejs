@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<!--
+  Helios by HTML5 UP
+  html5up.net | @n33co
+  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>醜蔬果大翻身</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="/css/main.css" />
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+
+    <%- partial('components/script') %>
+
+    <script>
+      var u = angular.module('uglyfruit', []);
+    </script>
+
+  </head>
+  <body class="homepage"  ng-app = "uglyfruit">
+    <div id="page-wrapper">
+
+      <!-- Header -->
+        <div id="header">
+
+          <!-- Inner -->
+            <div class="inner"  ng-controller="loginCtrl">
+              <header>
+                <h1><a href="/" id="logo">醜蔬果大翻身</a></h1>
+                <hr/>
+                <p>管理頁面登入</p>
+                </br>
+                <form method="post" ng-submit="send_login()">
+                  <div class="12u 12u$(3)" style='margin: 0px auto;'>
+                    <input type="password" ng-model="password" placeholder="{{ error_password }}通關密碼"/>
+                  </div>
+                  </br>
+                  <div class="3u 12u$(3)" style='margin: 0px auto;'>
+                    <ul class="actions fit">
+                      <li><a ng-click="send_login()" style="cursor:pointer;" class="button special fit">登入</a></li>
+                    </ul>
+                    </div>
+                </form>
+              </header>
+            </div>
+
+        </div>
+        <script>
+          u.controller('loginCtrl', function($scope, $rootScope, $http) {
+            $scope.error_message = '';
+            $scope.account = '';
+            $scope.password = '';
+            $scope.send_login = function() {
+              if($scope.password == ''){
+                $scope.error_password = '請輸入';
+                return;
+              }
+              $http.post('/web/adminLogin', {
+                password: $scope.password,
+              })
+              .success(function(response, status) {
+                console.log(response);
+                window.location = '/admin/index'
+              })
+              .error(function(response, status) {
+                console.log(response);
+              })
+            }
+          });
+        </script>
+
+        <%- partial('components/footer') %>
+
+    </div>
+
+  </body>
+</html>
