@@ -15,8 +15,12 @@
 
 		<%- partial('components/script') %>
 
+		<script>
+	      var u = angular.module('uglyfruit', []);
+	    </script>
+
 	</head>
-	<body class="left-sidebar">
+	<body class="left-sidebar"  ng-app="uglyfruit">
 		<div id="page-wrapper">
 
 			<!-- Header -->
@@ -34,162 +38,90 @@
 				</div>
 
 			<!-- Main -->
-				<div class="wrapper style1">
+				<div class="wrapper style1"  ng-controller="farmerCtrl">
 
 					<div class="container">
 						<div class="row 200%">
 							<div class="4u 12u(mobile)" id="sidebar">
-								<section>
-									<header>
-										<h3><a href="#">Sed lorem etiam consequat</a></h3>
-									</header>
-									<p>
-										Tempus cubilia ultrices tempor sagittis. Nisl fermentum consequat integer interdum.
-									</p>
+								<section  ng-init="tab = 1">
 									<div class="row 50%">
 										<div class="4u">
-											<a href="#" class="image fit"><img src="images/pic10.jpg" alt="" /></a>
+											<a href ng-click = "tab = 1" class="image fit"><img src="/images/farmer/1.jpg" alt="" /></a>
 										</div>
 										<div class="8u">
-											<h4>Nibh sed cubilia</h4>
-											<p>
-												Amet nullam fringilla nibh nulla convallis tique ante proin.
-											</p>
+											<h4><a href ng-click = "tab = 1">蔡警煌 先生</a></h4>
+											<p>雲林水林薯長有機農場</p>
 										</div>
 									</div>
 									<div class="row 50%">
 										<div class="4u">
-											<a href="#" class="image fit"><img src="images/pic11.jpg" alt="" /></a>
+											<a href ng-click = "tab = 2" class="image fit"><img src="/images/farmer/2.jpg" alt="" /></a>
 										</div>
 										<div class="8u">
-											<h4>Proin sed adipiscing</h4>
-											<p>
-												Amet nullam fringilla nibh nulla convallis tique ante proin.
-											</p>
+											<h4><a href ng-click = "tab = 2">源鄉地瓜郭子媽</a></h4>
+											<p>雲林口湖</p>
 										</div>
 									</div>
-									<div class="row 50%">
-										<div class="4u">
-											<a href="#" class="image fit"><img src="images/pic12.jpg" alt="" /></a>
-										</div>
-										<div class="8u">
-											<h4>Lorem feugiat magna</h4>
-											<p>
-												Amet nullam fringilla nibh nulla convallis tique ante proin.
-											</p>
-										</div>
-									</div>
-									<div class="row 50%">
-										<div class="4u">
-											<a href="#" class="image fit"><img src="images/pic13.jpg" alt="" /></a>
-										</div>
-										<div class="8u">
-											<h4>Sed tempus fringilla</h4>
-											<p>
-												Amet nullam fringilla nibh nulla convallis tique ante proin.
-											</p>
-										</div>
-									</div>
-									<div class="row 50% no-collapse">
-										<div class="4u">
-											<a href="#" class="image fit"><img src="images/pic14.jpg" alt="" /></a>
-										</div>
-										<div class="8u">
-											<h4>Malesuada fermentum</h4>
-											<p>
-												Amet nullam fringilla nibh nulla convallis tique ante proin.
-											</p>
-										</div>
-									</div>
-									<footer>
-										<a href="#" class="button">Magna Adipiscing</a>
-									</footer>
 								</section>
 							</div>
 							<div class="8u 12u(mobile) important(mobile)" id="content">
-								<article id="main">
+								<article id="main"  ng-show = "tab === 1">
 									<header>
-										<h2><a href="#">Left Sidebar</a></h2>
-										<p>
-											Morbi convallis lectus malesuada sed fermentum dolore amet
-										</p>
+										<h2>蔡警煌 先生</a></h2>
+										<p>雲林水林薯長有機農場</p>
 									</header>
-									<a href="#" class="image featured"><img src="images/pic06.jpg" alt="" /></a>
+									<a href="#" class="image featured"><img src="/images/farmer/1.jpg" alt="" /></a>
 									<p>
-										Commodo id natoque malesuada sollicitudin elit suscipit. Curae suspendisse mauris posuere accumsan massa
-										posuere lacus convallis tellus interdum. Amet nullam fringilla nibh nulla convallis ut venenatis purus
-										lobortis. Auctor etiam porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum
-										consequat integer interdum integer purus sapien. Nibh eleifend nulla nascetur pharetra commodo mi augue
-										interdum tellus. Ornare cursus augue feugiat sodales velit lorem. Semper elementum ullamcorper lacinia
-										natoque aenean scelerisque vel lacinia mollis quam sodales congue.
+										黑夜中我們騎著機車呼嘯穿梭雲林，帶著一身行囊來到蔡警煌先生的家，</br>
+										三合院內亮著燈的一角，熱騰騰剛烤好的地瓜就擺在桌上，</br>
+										鬆軟綿密，隱約透著甜甜的焦蜜。</br>
+										</br>
+										我們在小屋內與蔡警煌先生討論著對於格外農產品的想法，</br>
+										參觀了倉庫裡滿滿的一袋一袋地瓜，準備要出貨給不同的通路。</br>
+										那些因為個頭太小，或者表皮有擦傷的，都被蔡警煌先生細心地留了下來，</br>
+										「其實它們也很好吃，就像你們剛剛吃的那些烤地瓜，烤起來還是一樣美味。」蔡警煌先生說。</br>
+										</br>
+										這些難以進到市面上的、醜得可愛的台農57號地瓜，</br>
+										就只能分享給幸運又識貨的有緣人了。
 									</p>
-									<section>
-										<header>
-											<h3>Ultrices tempor sagittis nisl</h3>
-										</header>
-										<p>
-											Nascetur volutpat nibh ullamcorper vivamus at purus. Cursus ultrices porttitor sollicitudin imperdiet
-											at pretium tellus in euismod a integer sodales neque. Nibh quis dui quis mattis eget imperdiet venenatis
-											feugiat. Neque primis ligula cum erat aenean tristique luctus risus ipsum praesent iaculis. Fermentum elit
-											fringilla consequat dis arcu. Pellentesque mus tempor vitae pretium sodales porttitor lacus. Phasellus
-											egestas odio nisl duis sociis purus faucibus morbi. Eget massa mus etiam sociis pharetra magna.
-										</p>
-										<p>
-											Eleifend auctor turpis magnis sed porta nisl pretium. Aenean suspendisse nulla eget sed etiam parturient
-											orci cursus nibh. Quisque eu nec neque felis laoreet diam morbi egestas. Dignissim cras rutrum consectetur
-											ut penatibus fermentum nibh erat malesuada varius.
-										</p>
-									</section>
-									<section>
-										<header>
-											<h3>Augue euismod feugiat tempus</h3>
-										</header>
-										<p>
-											Pretium tellus in euismod a integer sodales neque. Nibh quis dui quis mattis eget imperdiet venenatis
-											feugiat. Neque primis ligula cum erat aenean tristique luctus risus ipsum praesent iaculis. Fermentum elit
-											ut nunc urna volutpat donec cubilia commodo risus morbi. Lobortis vestibulum velit malesuada ante
-											egestas odio nisl duis sociis purus faucibus morbi. Eget massa mus etiam sociis pharetra magna.
-										</p>
-									</section>
+								</article>
+								<article id="main"  ng-show = "tab === 2">
+									<header>
+										<h2>源鄉地瓜郭子媽</a></h2>
+										<p>雲林口湖</p>
+									</header>
+									<a href="#" class="image featured"><img src="/images/farmer/2.jpg" alt="" /></a>
+									<p>
+										源鄉地瓜是我們最後一位拜訪的農友，不同於水林鄉中地瓜田遍佈的景象，源鄉地瓜位處口湖鄉，一個滿是蚵農的濱海小鎮。</br>
+										</br>
+										郭子媽與她的先生因為喜歡鄉下自然單純的生活，義無反顧地放棄原本模板工人的工作。選擇不灑農藥與化肥的耕作的方式，讓他們必須加倍努力，才能栽種出慣行產量的一半。</br>
+										</br>
+										郭子媽告訴我們今年地瓜因為天候與病蟲害的關係，NG的地瓜有將近一半的比例。然而，在格外品的再利用上，卻苦無更好的解決方法。想要送加工廠，做成乾燥的地瓜條，不過有機的加工廠不多，送去開膜的加工費又不便宜。我們到郭子媽的倉庫，看看剛收下來的地瓜。麻布袋裡裝滿個頭嬌小的地瓜，不過歪了點、扭了點，但更顯得有生命力。</br>
+										</br>
+										「你知道我們說ㄘㄠˋ ㄏㄩㄣ，但其實壞掉的地瓜是香的嗎？」</br>
+										</br>
+										撥開那條壞掉的地瓜有股清香，還有郭子媽與她的先生對這片土地一股腦的熱情。
+									</p>
 								</article>
 							</div>
-						</div>
-						<hr />
-						<div class="row">
-							<article class="4u 12u(mobile) special">
-								<a href="#" class="image featured"><img src="images/pic07.jpg" alt="" /></a>
-								<header>
-									<h3><a href="#">Gravida aliquam penatibus</a></h3>
-								</header>
-								<p>
-									Amet nullam fringilla nibh nulla convallis tique ante proin sociis accumsan lobortis. Auctor etiam
-									porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum consequat integer interdum.
-								</p>
-							</article>
-							<article class="4u 12u(mobile) special">
-								<a href="#" class="image featured"><img src="images/pic08.jpg" alt="" /></a>
-								<header>
-									<h3><a href="#">Sed quis rhoncus placerat</a></h3>
-								</header>
-								<p>
-									Amet nullam fringilla nibh nulla convallis tique ante proin sociis accumsan lobortis. Auctor etiam
-									porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum consequat integer interdum.
-								</p>
-							</article>
-							<article class="4u 12u(mobile) special">
-								<a href="#" class="image featured"><img src="images/pic09.jpg" alt="" /></a>
-								<header>
-									<h3><a href="#">Magna laoreet et aliquam</a></h3>
-								</header>
-								<p>
-									Amet nullam fringilla nibh nulla convallis tique ante proin sociis accumsan lobortis. Auctor etiam
-									porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum consequat integer interdum.
-								</p>
-							</article>
 						</div>
 					</div>
 
 				</div>
+
+				<script>
+		          u.controller('farmerCtrl', function() {
+		            this.tab = 1;
+
+				    this.setTab = function(newValue){
+				      this.tab = newValue;
+				    };
+
+				    this.isSet = function(tabName){
+				      return this.tab === tabName;
+				    };
+		          });
+		        </script>
 
 			    <%- partial('components/footer') %>
 			
