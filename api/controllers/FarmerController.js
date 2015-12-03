@@ -1,18 +1,19 @@
 /**
- * MessageController
+ * FarmerController
  *
- * @description :: Server-side logic for managing messages
+ * @description :: Server-side logic for managing farmers
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
 module.exports = {
-	create_message: function(req, res) {
+
+	create_farmer: function(req, res) {
 		var name = req.param('name');
-		var email = req.param('email');
+		var location = req.param('location');
 		var text = req.param('text');
-		Message.create({
+		Farmer.create({
 			name: name,
-			email: email,
+			location: location,
 			text: text,
 		})
 		.exec(function(err, cta) {
@@ -21,14 +22,8 @@ module.exports = {
 		})
 	},
 
-	get_message: function(req, res) {
-		if(!req.session.isAdmin || typeof(req.session.isAdmin) == 'undefined'){
-			return res.view('blank', {
-				layout: 'adminLogin'
-			})
-		}
-
-		Message.find({
+	get_farmer: function(req, res) {
+		Farmer.find({
 		})
 		.exec(function(err, ctas) {
 			if(err) return res.negotiate(err);
@@ -36,18 +31,18 @@ module.exports = {
 		})
 	},
 
-	delete_message: function(req, res) {
+	delete_farmer: function(req, res) {
 		if(!req.session.isAdmin || typeof(req.session.isAdmin) == 'undefined'){
 			return res.view('blank', {
 				layout: 'adminLogin'
 			})
 		}
 		
-		var messageID = req.param('messageID');
-		Message.destroy({
-			id: messageID
+		var farmerID = req.param('farmerID');
+		Farmer.destroy({
+			id: farmerID
 		})
-		.exec(function(err, message) {
+		.exec(function(err, farmer) {
 			if(err) return res.negotiate(err);
 			return res.json({ result: 'ok' });
 		})

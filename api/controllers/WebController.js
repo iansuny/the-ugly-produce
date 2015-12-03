@@ -46,6 +46,16 @@ module.exports = {
 					layout: 'admin',
 				})
 				break;
+			case 'farmer':
+				return res.view('blank', {
+					layout: 'adminFarmer',
+				})
+				break;
+			case 'farmerAdd':
+				return res.view('blank', {
+					layout: 'adminFarmerAdd',
+				})
+				break;
 			case 'logout':
 				req.session.isAdmin = false;
 				return res.redirect('admin/login')

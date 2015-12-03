@@ -31,8 +31,11 @@
 							<header>
 								<h1><a id="logo">醜蔬果戰略中心</a></h1>
 								<hr/>
-               					<p>收到的訊息</p>
+               					<p>農友介紹</p>
 							</header>
+							<footer>
+				                <a href="/admin/farmerAdd" class="button circled">新增</a>
+				            </footer>
 						</div>
 
 					<%- partial('components/admin_nav') %>
@@ -40,52 +43,46 @@
 				</div>
 
 			<!-- Main -->
-				<div class="wrapper style1"  ng-controller="messageCtrl" ng-init="initialize()">
+				<div class="wrapper style1"  ng-controller="farmerCtrl" ng-init="initialize()">
 
 					<div class="container">
-						<article id="main" class="special">
-							<div class="table">
-								<table>
-									<thead>
-										<tr>
-											<th>姓名</th>
-											<th>Email</th>
-											<th>內容</th>
-											<th>管理</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr ng-repeat="message in messageList">
-											<td ng-bind="message.name"></td>
-											<td><a ng-href="mailto:{{user.email}}"><span ng-bind="message.email"></span></a></td>
-											<td ng-bind="message.text"></td>
-											<td>
-												<a ng-click="delete_message(message.id)" style="cursor:pointer;" class="button special small">刪除</a>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
+						<article id="main" class="special" ng-repeat="farmer in farmerList">
+							<section>
+								<div class="row 50%">
+									<div class="3u">
+										<a class="image fit"><img src="/images/farmer/1.jpg" alt="" /></a>
+									</div>
+									<div class="9u">
+										<h3  ng-bind="farmer.name">蔡警煌 先生</h3>
+										<h4  ng-bind="farmer.location">蔡警煌 先生</h4>
+										<p ng-bind="farmer.text"></p>
+									</div>
+								</div>
+							</section>
+							<footer>
+								<a ng-click="delete_farmer(farmer.id)" style="cursor:pointer;" class="button">刪除</a>
+								<hr>
+							</footer>
 						</article>
 					</div>
 
 				</div>
 
 				<script>
-					u.controller('messageCtrl', function($scope, $rootScope, $http) {
+					u.controller('farmerCtrl', function($scope, $rootScope, $http) {
 						$scope.initialize = function() {
-							$http.get('/message/get_message')
+							$http.get('/farmer/get_farmer')
 							.success(function(response, status) {
 								console.log(response);
-								$scope.messageList = response.result;
+								$scope.farmerList = response.result;
 							})
 							.error(function(response, status) {
 							})
 						}
 
-						$scope.delete_message = function(messageID){
-			              $http.post('/message/delete_message', {
-			                messageID: messageID
+						$scope.delete_farmer = function(farmerID){
+			              $http.post('/farmer/delete_farmer', {
+			                farmerID: farmerID
 			              })
 			              .success(function(response, status) {
 			                $scope.initialize();

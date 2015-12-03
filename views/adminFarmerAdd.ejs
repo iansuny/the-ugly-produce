@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<!--
+	Helios by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>醜蔬果戰略中心</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+
+		<%- partial('components/script') %>
+
+		<script>
+			var u = angular.module('uglyfruit', []);
+		</script>
+
+	</head>
+	<body ng-app="uglyfruit" ng-cloak>
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Inner -->
+						<div class="inner">
+							<header>
+								<h1><a id="logo">醜蔬果戰略中心</a></h1>
+								<hr/>
+               					<p>新增農友介紹</p>
+							</header>
+						</div>
+
+					<%- partial('components/admin_nav') %>
+
+				</div>
+
+			<!-- Main -->
+				<div class="wrapper style1 special">
+					<section id="features" class="container special" ng-controller="farmerCtrl" ng-cloak>
+						<section id="content" ng-submit="send_farmer()">
+							<form>
+								<div class="row uniform">
+									<div class="6u 12u$(3)">
+										<input type="text" placeholder="農友的名字" ng-model="name"/>
+									</div>
+									<div class="6u 12u$(3)">
+										<input type="text" placeholder="農友的地點" ng-model="location"/>
+									</div>
+									<div class="12u 12u$(3)">
+										<textarea ng-model="text" placeholder="農友的介紹" rows="6"></textarea>
+									</div>
+								</div>
+								</br>
+							</form>
+						</section> 
+						<footer>
+							<h3>{{ error_message }}</h3>
+							</br>
+							<a ng-click="send_farmer()" style="cursor:pointer;" class="button">送出</a>
+						</footer>
+					</section>
+				</div>
+
+				<script>
+					u.controller('farmerCtrl', function($scope, $rootScope, $http) {
+			            $scope.name = '';
+			            $scope.location = '';
+			            $scope.text = '';
+			            $scope.send_farmer = function() {
+			              $scope.error_message = '';
+			              if($scope.name == ''){
+			                $scope.error_message = '請輸入農友的名字';
+			                return;
+			              }
+			              if($scope.location == ''){
+			                $scope.error_message = '請輸入農友的地點';
+			                return;
+			              }
+			              if($scope.text == ''){
+			                $scope.error_message = '請輸入農友的介紹';
+			                return;
+			              }
+			              $http.post('/farmer/create_farmer', {
+			                name: $scope.name,
+			                location: $scope.location,
+			                text: $scope.text,
+			              })
+			              .success(function(response, status) {
+			                console.log(response);
+			                window.alert('新增農友介紹成功！');
+			                window.location = '/admin/farmer'
+			              })
+			              .error(function(response, status) {
+			                console.log(response);
+			              })
+			              return;
+			            }
+			        });
+				</script>
+
+			    <%- partial('components/footer') %>
+			
+		</div>
+
+	</body>
+</html>
