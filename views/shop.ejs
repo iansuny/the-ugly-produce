@@ -126,15 +126,15 @@
 								</div>
 
 								<div class="3u 12u">
-									<input type="checkbox" id="morning" ng-model="delivery_morning" ng-true-value="'早上'">
+									<input type="checkbox" id="morning" ng-model="delivery_morning" ng-true-value="'早上'" ng-false-value="">
 									<label for="morning">早上</label>
 								</div>
 								<div class="3u 12u">
-									<input type="checkbox" id="afternoon" ng-model="delivery_afternoon" ng-true-value="'下午'">
+									<input type="checkbox" id="afternoon" ng-model="delivery_afternoon" ng-true-value="'下午'" ng-false-value="">
 									<label for="afternoon">下午</label>
 								</div>
 								<div class="3u 12u">
-									<input type="checkbox" id="night" ng-model="delivery_night" ng-true-value="'晚上'">
+									<input type="checkbox" id="night" ng-model="delivery_night" ng-true-value="'晚上'" ng-false-value="">
 									<label for="night">晚上</label>
 								</div>
 
@@ -230,7 +230,7 @@
 			              })
 			              .success(function(response, status) {
 			                console.log(response);
-			                window.alert('訂購成功！');
+			                window.alert('收到訂單！確定產地有貨會再通知付款');
 			                window.location = '/'
 			              })
 			              .error(function(response, status) {
