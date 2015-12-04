@@ -25,6 +25,10 @@ module.exports = {
 				return res.view('blank', {
 					layout: 'farmer',
 				})
+			case 'shop':
+				return res.view('blank', {
+					layout: 'shop',
+				})
 		}
 	},
 	
@@ -51,9 +55,20 @@ module.exports = {
 					layout: 'adminFarmer',
 				})
 				break;
-			case 'farmerAdd':
+			case 'farmer_add':
 				return res.view('blank', {
 					layout: 'adminFarmerAdd',
+				})
+				break;
+			case 'order':
+				return res.view('blank', {
+					layout: 'adminOrder',
+				})
+				break;
+			case 'order_detail':
+				return res.view('blank', {
+					layout: 'adminOrderDetail',
+					orderID: req.session.orderID
 				})
 				break;
 			case 'logout':

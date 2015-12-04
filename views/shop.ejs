@@ -1,0 +1,249 @@
+<!DOCTYPE HTML>
+<!--
+	Helios by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>我想吃醜蔬果</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+
+		<%- partial('components/script') %>
+
+		<script>
+			var u = angular.module('uglyfruit', []);
+		</script>
+
+	</head>
+	<body ng-app="uglyfruit" ng-cloak>
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Inner -->
+						<div class="inner">
+							<header>
+								<h1><a id="logo">我想吃醜蔬果</a></h1>
+								<hr/>
+               					<p>我們會視您的叫貨品項、數量及需求，詢問農友的農產品情況，</br>
+               					因此需要1-3個工作天再以信件的方式跟您連絡，請記得查看信件哦！</br>
+               					另外，由於不同季節及農友狀況不同，可能不是每個品項都能滿足您的需求，</br>
+               					還請大家見諒：）</p>
+							</header>
+						</div>
+
+					<%- partial('components/nav') %>
+
+				</div>
+
+			<!-- Main -->
+				<div class="wrapper style1 special" ng-controller="shopCtrl" ng-cloak>
+					<section class="container special" ng-submit="send_order()">
+						<form>
+							<div class="row 50%">
+								<div class="4u">
+									<a class="image fit"><img src="/images/product/4.jpg" alt="" /></a>
+								</div>
+								<div class="4u">
+									<header>
+										<h3>產品名稱</h3>
+									</header>
+									<p>台農 57 地瓜</p>
+									<header>
+										<h3>產地</h3>
+									</header>
+									<p>雲林水林</p>
+									<header>
+										<h3>單價</h3>
+									</header>
+									<p>$50/斤（含運費）</p>
+								</div>
+								<div class="4u">
+									<header>
+										<h3>購買數量</h3>
+									</header>
+									<p>至少需訂購 5 斤以上</p>
+									<div class="row uniform">
+										<div class="6u 12u">
+											<input type="text" placeholder="斤數" ng-model="a"/>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row 50%">
+								<div class="4u">
+									<a class="image fit"><img src="/images/product/2.jpg" alt="" /></a>
+								</div>
+								<div class="4u">
+									<header>
+										<h3>產品名稱</h3>
+									</header>
+									<p>無毒芭樂</p>
+									<header>
+										<h3>產地</h3>
+									</header>
+									<p>高雄六龜</p>
+									<header>
+										<h3>單價</h3>
+									</header>
+									<p>$45/斤（含運費）</p>
+								</div>
+								<div class="4u">
+									<header>
+										<h3>購買數量</h3>
+									</header>
+									<p>至少需訂購 5 斤以上</p>
+									<div class="row uniform">
+										<div>
+											<input type="text" placeholder="斤數" ng-model="b"/>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row uniform">
+								<div class="6u 12u">
+									<input type="text" placeholder="收件人" ng-model="name"/>
+								</div>
+								<div class="6u 12u">
+									<input type="text" placeholder="收件地址" ng-model="address"/>
+								</div>
+
+								<div class="6u 12u">
+									<input type="text" placeholder="聯絡電話" ng-model="tel"/>
+								</div>
+								<div class="6u 12u">
+									<input type="text" placeholder="聯絡Email" ng-model="email"/>
+								</div>
+
+								<div class="3u 12u">
+									<h3>希望到貨的時間</h3>
+								</div>
+
+								<div class="3u 12u">
+									<input type="checkbox" id="morning" ng-model="delivery_morning" ng-true-value="'早上'">
+									<label for="morning">早上</label>
+								</div>
+								<div class="3u 12u">
+									<input type="checkbox" id="afternoon" ng-model="delivery_afternoon" ng-true-value="'下午'">
+									<label for="afternoon">下午</label>
+								</div>
+								<div class="3u 12u">
+									<input type="checkbox" id="night" ng-model="delivery_night" ng-true-value="'晚上'">
+									<label for="night">晚上</label>
+								</div>
+
+								<div class="12u 12u">
+									<textarea ng-model="text" placeholder="蔬果用途（選填）" rows="6"></textarea>
+								</div>
+							</div>
+							</br>
+						</form> 
+						<footer>
+							<h3>{{ error_message }}</h3>
+							</br>
+							<a ng-click="send_order()" style="cursor:pointer;" class="button">送出訂單</a>
+						</footer>
+					</section>
+				</div>
+
+				<script>
+					u.controller('shopCtrl', function($scope, $rootScope, $http) {
+			            $scope.a = '';
+			            $scope.b = '';
+			            $scope.product = '';
+			            $scope.name = '';
+			            $scope.address = '';
+			            $scope.tel = '';
+			            $scope.email = '';
+			            $scope.delivery_morning = '';
+			            $scope.delivery_afternoon = '';
+			            $scope.delivery_night = '';
+			            $scope.delivery = '';
+			            $scope.text = '';
+			            $scope.send_order = function() {
+			              $scope.error_message = '';
+			              if($scope.a < 5 && $scope.a != 0){
+			                $scope.error_message = '台農 57 地瓜至少需訂購 5 斤以上';
+			                return;
+			              }
+			              if($scope.b < 5 && $scope.b != 0){
+			                $scope.error_message = '無毒芭樂至少需訂購 5 斤以上';
+			                return;
+			              }
+			              if($scope.a + $scope.b == 0){
+			                $scope.error_message = '請選擇想訂購的商品';
+			                return;
+			              }
+
+			              if($scope.a == 0){
+			              	$scope.a = '';
+			              }
+			              if($scope.b == 0){
+			              	$scope.b = '';
+			              }
+
+			              if($scope.a >= 5 && $scope.a != 0){
+			                $scope.a = '地瓜' + $scope.a + '斤 ';
+			              }
+			              if($scope.b >= 5 && $scope.b != 0){
+			                $scope.b = '芭樂' + $scope.b + '斤';
+			              }
+
+			              $scope.product = $scope.a + $scope.b;
+
+			              if($scope.name == ''){
+			                $scope.error_message = '請輸入收件人';
+			                return;
+			              }
+			              if($scope.address == ''){
+			                $scope.error_message = '請輸入收件地址';
+			                return;
+			              }
+			              if($scope.tel == ''){
+			                $scope.error_message = '請輸入聯絡電話';
+			                return;
+			              }
+			              if($scope.email == ''){
+			                $scope.error_message = '請輸入聯絡Email';
+			                return;
+			              }
+
+			              $scope.delivery = $scope.delivery_morning + $scope.delivery_afternoon + $scope.delivery_night;
+			              if($scope.delivery == 0){
+			                $scope.error_message = '請勾選希望到貨的時間';
+			                return;
+			              }
+			              $http.post('/order/create_order', {
+			              	product: $scope.product,
+			                name: $scope.name,
+			                address: $scope.address,
+			                tel: $scope.tel,
+			                email: $scope.email,
+			                delivery: $scope.delivery,
+			                text: $scope.text,
+			              })
+			              .success(function(response, status) {
+			                console.log(response);
+			                window.alert('訂購成功！');
+			                window.location = '/'
+			              })
+			              .error(function(response, status) {
+			                console.log(response);
+			              })
+			              return;
+			            }
+			        });
+				</script>
+
+			    <%- partial('components/footer') %>
+			
+		</div>
+
+	</body>
+</html>

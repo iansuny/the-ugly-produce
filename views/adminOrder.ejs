@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<!--
+	Helios by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>醜蔬果戰略中心</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+
+		<%- partial('components/script') %>
+
+		<script>
+			var u = angular.module('uglyfruit', []);
+		</script>
+
+	</head>
+	<body ng-app="uglyfruit" ng-cloak>
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Inner -->
+						<div class="inner">
+							<header>
+								<h1><a id="logo">醜蔬果戰略中心</a></h1>
+								<hr/>
+               					<p>訂單</p>
+							</header>
+						</div>
+
+					<%- partial('components/admin_nav') %>
+
+				</div>
+
+			<!-- Main -->
+				<div class="wrapper style1"  ng-controller="orderCtrl" ng-init="initialize()">
+
+					<div class="container">
+						<article id="main" class="special">
+							<div class="table">
+								<table>
+									<thead>
+										<tr>
+											<th>編號</th>
+											<th>姓名</th>
+											<th>品項</th>
+											<th>狀態</th>
+											<th>管理</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="order in orderList">
+											<td ng-bind="order.id"></td>
+											<td><a ng-href="mailto:{{order.email}}"><span ng-bind="order.name"></span></a></td>
+											<td ng-bind="order.product"></td>
+											<td ng-bind="order.status"></td>
+											<td>
+												<a ng-click="order_detail(order.id)" class="button">詳情</a>
+
+												<a ng-show="order.status == '收到訂單'" ng-click="update_order(order.id)" style="cursor:pointer;" class="button">出貨</a>
+												<a ng-show="order.status == '已出貨'" class="button disabled">出貨</a>
+
+												<a ng-show="order.status == '收到訂單'" ng-click="delete_order(order.id)" class="button special">刪除</a>
+												<a ng-show="order.status == '已出貨'" class="button special disabled">刪除</a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</article>
+					</div>
+
+				</div>
+
+				<script>
+					u.controller('orderCtrl', function($scope, $rootScope, $http) {
+						$scope.initialize = function() {
+							$http.get('/order/get_order')
+							.success(function(response, status) {
+								console.log(response);
+								$scope.orderList = response.result;
+							})
+							.error(function(response, status) {
+							})
+						}
+
+						$scope.order_detail = function(orderID){
+			              $http.post('/order/order_detail', {
+			                orderID: orderID,
+			              })
+			              .success(function(response, status) {
+			                window.location = '/admin/order_detail'
+			                console.log(response);
+			              })
+			              .error(function(response, status) {
+			                console.log(response);
+			              })
+			            }
+
+			            $scope.update_order = function(orderID){
+			              $http.post('/order/update_order', {
+			                orderID: orderID
+			              })
+			              .success(function(response, status) {
+			              	window.alert('已經確認出貨！');
+			                $scope.initialize();
+			              })
+			              .error(function(response, status) {
+			              })
+			            }
+
+						$scope.delete_order = function(orderID){
+			              $http.post('/order/delete_order', {
+			                orderID: orderID
+			              })
+			              .success(function(response, status) {
+			                $scope.initialize();
+			              })
+			              .error(function(response, status) {
+			              })
+			            }
+					})
+				</script>
+
+			    <%- partial('components/footer') %>
+			
+		</div>
+
+	</body>
+</html>

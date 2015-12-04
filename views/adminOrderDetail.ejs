@@ -1,0 +1,142 @@
+<!DOCTYPE HTML>
+<!--
+	Helios by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>訂單詳情</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+
+		<%- partial('components/script') %>
+
+		<script>
+	      var u = angular.module('uglyfruit', []);
+	    </script>
+
+	</head>
+	<body class="left-sidebar"  ng-app="uglyfruit">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Inner -->
+						<div class="inner">
+							<header>
+								<h1><a id="logo">醜蔬果戰略中心</a></h1>
+								<hr/>
+               					<p>訂單詳情</p>
+							</header>
+						</div>
+
+					<%- partial('components/admin_nav') %>
+
+				</div>
+
+			<!-- Main -->
+				<div class="wrapper style1"  ng-controller="orderCtrl"  ng-init="initialize()">
+
+					<div class="container">
+						<div class="row 200%"  ng-repeat="order in orderList">
+							<div class="3u 12u(mobile)" id="sidebar">
+								<section>
+									<header>
+										<h3>訂單編號</h3>
+									</header>
+									<p ng-bind="order.id"></p>
+									<header>
+										<h3>訂單狀態</h3>
+									</header>
+									<p ng-bind="order.status"></p>
+									<section>
+										<a ng-show="order.status == '收到訂單'" ng-click="update_order(order.id)" class="button">訂單出貨</a>
+										<a ng-show="order.status == '已出貨'" class="button disabled">訂單出貨</a>
+									</section>
+									<section>
+										<a ng-show="order.status == '收到訂單'" href ng-click="delete_order(order.id)" class="button special">刪除訂單</a>
+										<a ng-show="order.status == '已出貨'" href class="button special disabled">刪除訂單</a>
+									</section>
+								</section>
+							</div>
+							<div class="9u 12u(mobile) important(mobile)" id="content">
+								<article id="main">
+									<header>
+										<h3>品項</h3>
+									</header>
+									<p ng-bind="order.product"></p>
+									<header>
+										<h3>收件人</h3>
+									</header>
+									<p ng-bind="order.name"></p>
+									<header>
+										<h3>收件地址</h3>
+									</header>
+									<p ng-bind="order.address"></p>
+									<header>
+										<h3>聯絡電話</h3>
+									</header>
+									<p ng-bind="order.tel"></p>
+									<header>
+										<h3>聯絡Email</h3>
+									</header>
+									<p ng-bind="order.email"></p>
+									<header>
+										<h3>希望到貨的時間</h3>
+									</header>
+									<p ng-bind="order.delivery"></p>
+								</article>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<script>
+		          u.controller('orderCtrl', function($scope, $rootScope, $http) {
+		          	$scope.initialize = function() {
+							$http.get('/order/get_order_by_id')
+							.success(function(response, status) {
+								console.log(response);
+								$scope.orderList = response.result;
+							})
+							.error(function(response, status) {
+							})
+						}
+
+					$scope.update_order = function(orderID){
+			              $http.post('/order/update_order', {
+			                orderID: orderID
+			              })
+			              .success(function(response, status) {
+			              	window.alert('已經確認出貨！');
+			                $scope.initialize();
+			              })
+			              .error(function(response, status) {
+			              })
+			            }
+
+		          	$scope.delete_order = function(orderID){
+			              $http.post('/order/delete_order', {
+			                orderID: orderID
+			              })
+			              .success(function(response, status) {
+			                window.location = '/admin/order'
+			              })
+			              .error(function(response, status) {
+			              })
+			            }
+		          });
+		        </script>
+
+			    <%- partial('components/footer') %>
+			
+		</div>
+
+	</body>
+</html>
