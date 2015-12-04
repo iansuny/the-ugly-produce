@@ -126,15 +126,15 @@
 								</div>
 
 								<div class="3u 12u">
-									<input type="checkbox" id="morning" ng-model="delivery_morning" ng-true-value="'早上'" ng-false-value="">
+									<input type="checkbox" id="morning" ng-model="delivery_morning" ng-true-value="'早上'" ng-false-value="0">
 									<label for="morning">早上</label>
 								</div>
 								<div class="3u 12u">
-									<input type="checkbox" id="afternoon" ng-model="delivery_afternoon" ng-true-value="'下午'" ng-false-value="">
+									<input type="checkbox" id="afternoon" ng-model="delivery_afternoon" ng-true-value="'下午'" ng-false-value="0">
 									<label for="afternoon">下午</label>
 								</div>
 								<div class="3u 12u">
-									<input type="checkbox" id="night" ng-model="delivery_night" ng-true-value="'晚上'" ng-false-value="">
+									<input type="checkbox" id="night" ng-model="delivery_night" ng-true-value="'晚上'" ng-false-value="0">
 									<label for="night">晚上</label>
 								</div>
 
@@ -147,7 +147,7 @@
 						<footer>
 							<h3>{{ error_message }}</h3>
 							</br>
-							<a ng-click="send_order()" style="cursor:pointer;" class="button">送出訂單</a>
+							<a ng-click="send_order()" style="cursor:pointer;" class="button special">送出訂單</a>
 						</footer>
 					</section>
 				</div>
