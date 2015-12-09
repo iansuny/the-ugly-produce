@@ -92,16 +92,7 @@
 						}
 
 						$scope.order_detail = function(orderID){
-			              $http.post('/order/order_detail', {
-			                orderID: orderID,
-			              })
-			              .success(function(response, status) {
-			                window.location = '/admin/order_detail'
-			                console.log(response);
-			              })
-			              .error(function(response, status) {
-			                console.log(response);
-			              })
+			              window.location = '/admin/order/' + orderID
 			            }
 
 			            $scope.update_order = function(orderID){

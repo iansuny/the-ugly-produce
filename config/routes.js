@@ -47,6 +47,11 @@ module.exports.routes = {
     action: 'adminIO'
   },
 
+  '/admin/order/:orderID': {
+    controller: 'OrderController',
+    action: 'order_detail'
+  }
+
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

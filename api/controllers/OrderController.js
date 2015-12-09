@@ -47,8 +47,9 @@ module.exports = {
 	},
 
 	get_order_by_id: function(req, res) {
+		var orderID = req.param('orderID');
 		Order.find({
-			id: req.session.orderID
+			id: orderID
 		})
 		.exec(function(err, orders) {
 			if(err) return res.negotiate(err);
@@ -69,8 +70,10 @@ module.exports = {
 			id: orderID
 		})
 		.exec(function(err, order) {
-			req.session.orderID = order.id;
-			return res.json({ result: 'ok' });
+			return res.view('blank', {
+				orderID: order.id,
+				layout: 'adminOrderDetail'
+			})
 		})
 		
 	},

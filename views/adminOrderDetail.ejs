@@ -104,7 +104,9 @@
 				<script>
 		          u.controller('orderCtrl', function($scope, $rootScope, $http) {
 		          	$scope.initialize = function() {
-							$http.get('/order/get_order_by_id')
+							$http.post('/order/get_order_by_id', {
+								orderID: '<%= orderID %>'
+							})
 							.success(function(response, status) {
 								console.log(response);
 								$scope.orderList = response.result;
